@@ -10,11 +10,11 @@ class Mass{
   int dragOffsetY;  // vertical pointer offset when being dragged
   boolean constrainedX;  // TRUE if the object cannot move horizontally
   boolean constrainedY;  // TRUE if the object cannot move vertically
-  int radius;  //radius in pixels
-  Slider slider = new Slider(2.0, 30);
+  int radius;  //radius of the mass in pixels
   
   Mass(float massIn, float PixPerkg, int x1, int y1, float xVel, float yVel, boolean xConstrained, boolean yConstrained){
-    //most variables are simply shifted here to make available to whole class
+
+    //shift incoming variables to make available to whole class
     mass = massIn;
     radius = int (mass*PixPerkg);
     xLocationPixels=x1;
@@ -33,7 +33,10 @@ class Mass{
 //    stroke(0);
     if(mouseOver) fill(200); //stroke(lightLine);
     if (dragging) fill(0);
-    ellipse(xLocationPixels, yLocationPixels, radius, radius);
+    ellipse(xLocationPixels, yLocationPixels+radius, radius, radius);
+    strokeWeight(LIGHTLINE);
+    stroke(0);
+    line(WINDOWWIDTH/2,yLocationPixels,xLocationPixels-radius,yLocationPixels);
   }
   
   void mouseOver(int x, int y){
